@@ -1,0 +1,1 @@
+Html,Css,Javascript,Bootstrap,Tailwind,Jquery,Vuejs,php,Laravel,Mysql,Git.Github,PostMan,
