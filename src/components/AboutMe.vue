@@ -24,7 +24,7 @@ import GradPic from "@/assets/images/GradPic.png";
 
       <div class="col-span-1 space-y-10 px-10 mt-10">
         <!-- Set width for text -->
-        <p class="text-semibold text-lg">
+        <p class="font-semibold text-black text-lg text-wrap">
           I am a passionate web developer with a solid background in HTML, CSS,
           and JavaScript. Currently, I am expanding my skill set by exploring
           modern frameworks such as Tailwind CSS, Vue.js, and Laravel. I believe
@@ -33,7 +33,7 @@ import GradPic from "@/assets/images/GradPic.png";
           applications.
         </p>
 
-        <p class="text-semibold text-lg">
+        <p class="font-semibold text-black text-lg text-wrap">
           I’m eager to tackle new challenges in backend development, enhance my
           skills, and express my creativity through coding. My goal is to become
           a proficient backend developer and create robust systems that support

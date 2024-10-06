@@ -16,7 +16,10 @@ import vue from "@/assets/images/tech/vue.svg";
 </script>
 
 <template>
-  <section class="max-w-[1000px] mx-auto h-[86vh] overflow-hidden" id="about">
+  <section
+    class="max-w-[1000px] mx-auto h-auto md:h-[86vh] overflow-hidden"
+    id="about"
+  >
     <h1
       class="text-5xl underline decoration-green-600 decoration-4 font-bold text-center mb-16 px-5"
     >
