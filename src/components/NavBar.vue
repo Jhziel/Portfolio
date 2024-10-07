@@ -1,4 +1,5 @@
 <script setup>
+import Logo from "@/assets/images/Logo/Don.png";
 import { ref } from "vue";
 const showMenu = ref(false);
 
@@ -29,7 +30,9 @@ const updateActive = (index) => {
     <nav
       class="bg-slate-50 shadow-md flex justify-between py-7 md:px-32 px-4 items-center text-gray-800"
     >
-      <h1 class="text-2xl font-bold">Don</h1>
+      <div>
+        <img width="80px" height="80px" :src="Logo" alt="Logo" />
+      </div>
 
       <font-awesome-icon
         :icon="['fas', 'bars']"
@@ -63,7 +66,10 @@ const updateActive = (index) => {
         leave-active-class="ease-in duration-200"
         leave-to-class="opacity-0 translate-x-full"
       >
-        <div v-if="showMenu" class="fixed right-0 bg-white inset-y-0 w-64 z-50 p-2">
+        <div
+          v-if="showMenu"
+          class="fixed right-0 bg-white inset-y-0 w-64 z-50 p-2"
+        >
           <div class="flex justify-end">
             <font-awesome-icon
               :icon="['fas', 'xmark']"
