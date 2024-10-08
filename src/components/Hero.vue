@@ -1,6 +1,6 @@
 <template>
-  <div
-    class="max-w-[1000px] mx-auto h-[86vh] flex flex-col justify-center gap-4"
+  <section
+    class="max-w-[1000px] mx-auto h-[100vh] flex flex-col justify-center gap-4"
     id="home"
   >
     <h1 class="text-3xl text-green-600">Hello, I'm</h1>
@@ -36,5 +36,5 @@
         </a>
       </li>
     </ul>
-  </div>
+  </section>
 </template>

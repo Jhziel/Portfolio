@@ -1,9 +1,17 @@
 <script setup>
 import Logo from "@/assets/images/Logo/Don.png";
-import { ref } from "vue";
-const showMenu = ref(false);
+import { onMounted, ref, onBeforeUnmount } from "vue";
 
-const active = ref(0);
+const showMenu = ref(false);
+const isScrolled = ref(false); // Track if the user has scrolled
+const active = ref(0); // Index of the active section link
+const currentSection = ref(""); // The id of the current section in view
+
+// Menu toggle functions
+const toggleMenu = () => (showMenu.value = !showMenu.value);
+const closeMenu = () => (showMenu.value = false);
+
+// Navigation items with hrefs to sections
 const navItem = [
   { name: "Home", href: "#home" },
   { name: "About", href: "#about" },
@@ -12,26 +20,64 @@ const navItem = [
   { name: "Contact", href: "#contact" },
 ];
 
-const toggleMenu = () => {
-  showMenu.value = !showMenu.value;
+// Detect the current section in view using IntersectionObserver
+onMounted(() => {
+  const sections = document.querySelectorAll("section");
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // Update the current section to the ID of the intersecting section
+          currentSection.value = entry.target.id;
+
+          // Find the index of the corresponding navItem based on the href
+          const index = navItem.findIndex(
+            (item) => item.href === `#${currentSection.value}`
+          );
+          if (index !== -1) {
+            active.value = index; // Set the active nav item based on section in view
+          }
+        }
+      });
+    },
+    {
+      threshold: 0.6, // Adjust how much of the section must be visible before it's considered active
+    }
+  );
+
+  sections.forEach((section) => observer.observe(section));
+});
+
+// Method to handle scrolling and set 'isScrolled' based on window scroll position
+const handleScroll = () => {
+  isScrolled.value = window.scrollY > 50; // Change threshold as needed
 };
 
-const closeMenu = () => {
-  showMenu.value = false;
-};
+// Set up the event listener on mount, and clean it up on unmount
+onMounted(() => {
+  window.addEventListener("scroll", handleScroll);
+});
 
-const updateActive = (index) => {
-  active.value = index;
-};
+onBeforeUnmount(() => {
+  window.removeEventListener("scroll", handleScroll);
+});
 </script>
 
 <template>
-  <header>
+  <header
+    :class="[
+      isScrolled ? 'bg-white shadow-md' : 'bg-transparent',
+      'fixed top-0 w-full transition-all ease-in z-50',
+    ]"
+  >
     <nav
-      class="bg-slate-50 shadow-md flex justify-between py-7 md:px-32 px-4 items-center text-gray-800"
+      class="flex justify-between py-7 md:px-32 px-4 items-center text-gray-800"
     >
       <div>
-        <img width="80px" height="80px" :src="Logo" alt="Logo" />
+        <a href="/">
+          <img width="80px" height="80px" :src="Logo" alt="Logo" />
+        </a>
       </div>
 
       <font-awesome-icon
@@ -66,10 +112,7 @@ const updateActive = (index) => {
         leave-active-class="ease-in duration-200"
         leave-to-class="opacity-0 translate-x-full"
       >
-        <div
-          v-if="showMenu"
-          class="fixed right-0 bg-white inset-y-0 w-64 z-50 p-2"
-        >
+        <div v-if="showMenu" class="fixed right-0 inset-y-0 w-64 z-50 p-2">
           <div class="flex justify-end">
             <font-awesome-icon
               :icon="['fas', 'xmark']"
@@ -78,6 +121,9 @@ const updateActive = (index) => {
             />
           </div>
           <ul class="flex flex-col items-center gap-5">
+            {{
+              currentSection
+            }}
             <li v-for="(item, index) in navItem" :key="index">
               <a
                 :href="item.href"

@@ -2,11 +2,11 @@
 import WeatherImg from "@/assets/projects/WeatherApp.png";
 import ProjectItems from "@/components/ProjectItems.vue";
 import TechonologyItems from "./TechonologyItems.vue";
-import github from "@/assets/images/tech/github.svg";
+
 </script>
 
 <template>
-  <section class="max-w-[1000px] mx-auto h-auto overflow-hidden" id="about">
+  <section class="max-w-[1000px] mx-auto h-auto overflow-hidden" id="project">
     <h1
       class="text-5xl underline decoration-green-600 decoration-4 underline-offset-8 font-bold text-center mb-16"
     >
