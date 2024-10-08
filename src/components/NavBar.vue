@@ -38,6 +38,12 @@ onMounted(() => {
           if (index !== -1) {
             active.value = index; // Set the active nav item based on section in view
           }
+
+          // Update the URL without reloading the page
+          const newUrl = `#${currentSection.value}`;
+          if (window.location.hash !== newUrl) {
+            history.pushState(null, null, newUrl); // Update the URL
+          }
         }
       });
     },
@@ -121,9 +127,6 @@ onBeforeUnmount(() => {
             />
           </div>
           <ul class="flex flex-col items-center gap-5">
-            {{
-              currentSection
-            }}
             <li v-for="(item, index) in navItem" :key="index">
               <a
                 :href="item.href"
