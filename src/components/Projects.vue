@@ -1,8 +1,8 @@
 <script setup>
 import WeatherImg from "@/assets/projects/WeatherApp.png";
+import Portfolio from "@/assets/projects/Portfolio.png";
 import ProjectItems from "@/components/ProjectItems.vue";
 import TechonologyItems from "./TechonologyItems.vue";
-
 </script>
 
 <template>
@@ -12,7 +12,7 @@ import TechonologyItems from "./TechonologyItems.vue";
     >
       PROJECTS
     </h1>
-    <div class="md:grid md:grid-cols-2 grid-cols-1 gap-10 px-3">
+    <div class="md:grid md:grid-cols-2 grid-cols-1 gap-10 px-3 space-y-5">
       <ProjectItems
         title="WeatherApp"
         :img="WeatherImg"
@@ -29,6 +29,24 @@ import TechonologyItems from "./TechonologyItems.vue";
           <TechonologyItems name="VueJS" />
           <TechonologyItems name="TailWind" />
           <TechonologyItems name="API" />
+        </template>
+      </ProjectItems>
+
+      <ProjectItems
+        title="My Portfolio"
+        :img="Portfolio"
+        hrefRepo="https://github.com/Jhziel/Portfolio"
+        hrefLive="https://main--weatherappvuejs2.netlify.app/"
+      >
+        <template #description>
+          A personal portfolio website showcasing my projects, skills, and
+          experience. It includes a responsive design built with Vue.js and
+          styled using Tailwind CSS.
+        </template>
+
+        <template #technologies>
+          <TechonologyItems name="VueJS" />
+          <TechonologyItems name="TailWind" />
         </template>
       </ProjectItems>
     </div>
