@@ -8,7 +8,7 @@ import TechonologyItems from "./TechonologyItems.vue";
 
 <template>
   <section
-    class="max-w-[1000px] mx-auto h-auto overflow-hidden mb-40"
+    class="max-w-[1000px] mx-auto h-auto overflow-hidden mb-40 fade-in-up"
     id="project"
   >
     <h1

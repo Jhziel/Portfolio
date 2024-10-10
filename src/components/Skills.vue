@@ -17,7 +17,7 @@ import vue from "@/assets/images/tech/vue.svg";
 
 <template>
   <section
-    class="max-w-[1000px] mx-auto h-auto md:h-[86vh] overflow-hidden"
+    class="max-w-[1000px] mx-auto h-auto md:h-[86vh] overflow-hidden fade-in-up"
     id="skills"
   >
     <h1

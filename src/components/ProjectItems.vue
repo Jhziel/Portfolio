@@ -20,12 +20,12 @@ const toggleFullDescription = () => {
 
 // Get the slot description's content and handle truncation
 const fullDescription = computed(() => slots.description()[0]?.children || "");
-const isDescriptionLong = computed(() => fullDescription.value.length > 200);
+const isDescriptionLong = computed(() => fullDescription.value.length > 210);
 
 // Display truncated description if it's long and not expanded
 const truncatedDescription = computed(() => {
   if (isDescriptionLong.value && !showFullDescription.value) {
-    return fullDescription.value.substring(0, 200) + "...";
+    return fullDescription.value.substring(0, 210) + "...";
   }
   return fullDescription.value;
 });
