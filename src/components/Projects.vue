@@ -74,7 +74,7 @@ import TechonologyItems from "./TechonologyItems.vue";
         title="My Portfolio"
         :img="Portfolio"
         hrefRepo="https://github.com/Jhziel/Portfolio"
-        hrefLive="https://main--weatherappvuejs2.netlify.app/"
+        hrefLive="https://donjaziel-portfolio.vercel.app/"
       >
         <template #description>
           A personal portfolio website showcasing my projects, skills, and
