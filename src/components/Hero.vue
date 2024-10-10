@@ -1,6 +1,6 @@
 <template>
   <section
-    class="max-w-[1000px] mx-auto h-[100vh] flex flex-col justify-center gap-4"
+    class="max-w-[1000px] mx-auto h-[100vh] flex flex-col justify-center gap-4 fade-in-up"
     id="home"
   >
     <h1 class="text-3xl text-green-600">Hello, I'm</h1>

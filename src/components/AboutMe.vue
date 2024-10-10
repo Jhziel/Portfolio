@@ -4,7 +4,7 @@ import GradPic from "@/assets/images/GradPic.png";
 
 <template>
   <section
-    class="max-w-[1000px] mx-auto h-[100vh] overflow-hidden space-y-10 mb-20"
+    class="max-w-[1000px] mx-auto h-[100vh] overflow-hidden space-y-10 mb-20 fade-in-up"
     id="about"
   >
     <h1

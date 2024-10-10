@@ -39,25 +39,23 @@ onMounted(() => {
             active.value = index; // Set the active nav item based on section in view
           }
 
-          // Update the URL without reloading the page
           const newUrl = `#${currentSection.value}`;
           if (window.location.hash !== newUrl) {
-            history.pushState(null, null, newUrl); // Update the URL
+            history.pushState(null, null, newUrl);
           }
         }
       });
     },
     {
-      threshold: 0.1, // Adjust how much of the section must be visible before it's considered active
+      threshold: 0.1,
     }
   );
 
   sections.forEach((section) => observer.observe(section));
 });
 
-// Method to handle scrolling and set 'isScrolled' based on window scroll position
 const handleScroll = () => {
-  isScrolled.value = window.scrollY > 50; // Change threshold as needed
+  isScrolled.value = window.scrollY > 50;
 };
 
 // Set up the event listener on mount, and clean it up on unmount
@@ -118,7 +116,7 @@ onBeforeUnmount(() => {
         leave-active-class="ease-in duration-200"
         leave-to-class="opacity-0 translate-x-full"
       >
-        <div v-if="showMenu" class="fixed right-0 inset-y-0 w-64 z-50 p-2">
+        <div v-if="showMenu" class="fixed right-0 inset-y-0 w-64 z-50 p-2 bg-white">
           <div class="flex justify-end">
             <font-awesome-icon
               :icon="['fas', 'xmark']"
@@ -126,12 +124,12 @@ onBeforeUnmount(() => {
               @click="closeMenu"
             />
           </div>
-          <ul class="flex flex-col items-center gap-5">
+          <ul class="flex flex-col  items-center gap-5 mt-20 ">
             <li v-for="(item, index) in navItem" :key="index">
               <a
                 :href="item.href"
                 @click="updateActive(index)"
-                class="text-semibold hover:underline decoration-green-500 decoration-2"
+                class="font-semibold text-lg hover:underline decoration-green-500 decoration-2"
                 :class="active === index ? 'text-green-500' : ''"
               >
                 {{ item.name }}
@@ -147,7 +145,7 @@ onBeforeUnmount(() => {
             <a
               :href="item.href"
               @click="updateActive(index)"
-              class="text-semibold hover:underline decoration-green-500 decoration-2"
+              class="font-semibold hover:underline decoration-green-500 decoration-2"
               :class="active === index ? 'text-green-500' : ''"
             >
               {{ item.name }}
