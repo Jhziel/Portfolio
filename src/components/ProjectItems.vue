@@ -1,4 +1,6 @@
 <script setup>
+import { ref, computed, useSlots } from "vue";
+
 const props = defineProps({
   title: String,
   img: String,
@@ -9,7 +11,24 @@ const props = defineProps({
   },
 });
 
-defineEmits([""]);
+const slots = useSlots();
+const showFullDescription = ref(false);
+
+const toggleFullDescription = () => {
+  showFullDescription.value = !showFullDescription.value;
+};
+
+// Get the slot description's content and handle truncation
+const fullDescription = computed(() => slots.description()[0]?.children || "");
+const isDescriptionLong = computed(() => fullDescription.value.length > 200);
+
+// Display truncated description if it's long and not expanded
+const truncatedDescription = computed(() => {
+  if (isDescriptionLong.value && !showFullDescription.value) {
+    return fullDescription.value.substring(0, 200) + "...";
+  }
+  return fullDescription.value;
+});
 </script>
 
 <template>
@@ -18,9 +37,19 @@ defineEmits([""]);
   </div>
   <div class="col-span-1 space-y-3 flex flex-col justify-start">
     <h1 class="text-2xl font-bold">{{ title }}</h1>
-    <p class="text-lg font-medium text-wrap">
-      <slot name="description"></slot>
-    </p>
+    <div class="mb-5">
+      <p class="text-lg font-normal">
+        {{ truncatedDescription }}
+        <!-- Conditionally render "See More" / "See Less" only if description is long -->
+        <span
+          v-if="isDescriptionLong"
+          @click="toggleFullDescription"
+          class="text-green-500 hover:text-green-600 mb-4 cursor-pointer"
+        >
+          {{ showFullDescription ? "See Less" : "See More" }}
+        </span>
+      </p>
+    </div>
     <div class="flex flex-wrap gap-2 items-center">
       <slot name="technologies"></slot>
     </div>
