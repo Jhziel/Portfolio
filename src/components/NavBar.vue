@@ -48,7 +48,7 @@ onMounted(() => {
       });
     },
     {
-      threshold: 0.6, // Adjust how much of the section must be visible before it's considered active
+      threshold: 0.1, // Adjust how much of the section must be visible before it's considered active
     }
   );
 
