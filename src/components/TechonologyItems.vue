@@ -1,3 +1,4 @@
+```vue
 <script setup>
 defineProps({
   name: String,
@@ -5,7 +6,10 @@ defineProps({
 </script>
 
 <template>
-  <p class="bg-green-500 text-md py-2 px-4 text-white font-bold text-center">
+  <span
+    class="inline-flex items-center rounded-md border border-gray-700 bg-[#0d1117] px-3 py-1.5 text-xs font-medium text-gray-300 transition-all duration-300 hover:border-green-500/50 hover:text-green-400"
+  >
     {{ name }}
-  </p>
+  </span>
 </template>
+```

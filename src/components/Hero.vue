@@ -1,8 +1,7 @@
-
 <template>
   <section
     id="home"
-    class="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-[#0d1117] px-6 sm:px-10"
+    class="relative flex min-h-[calc(100vh-80px)] w-full items-center justify-center overflow-hidden bg-[#0d1117] px-6 pt-20 pb-10 sm:px-10"
   >
     <!-- Subtle Background Elements -->
     <div
@@ -145,9 +144,5 @@
         </a>
       </div>
     </div>
-
-  
-    
   </section>
 </template>
-

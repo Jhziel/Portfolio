@@ -1,114 +1,173 @@
-
+```vue
 <script setup>
+import { computed, ref } from "vue";
+
 import WeatherImg from "@/assets/images/projects/WeatherApp.png";
 import Portfolio from "@/assets/images/projects/Portfolio.png";
 import Capstone from "@/assets/images/projects/Capstone.png";
+
 import ProjectItems from "@/components/ProjectItems.vue";
 import TechonologyItems from "./TechonologyItems.vue";
+
+const activeCategory = ref("All");
+
+const categories = ["All", "Web Applications", "WordPress"];
+
+const projects = [
+  {
+    title: "Impound Vehicle Management System",
+    category: "Web Applications",
+    img: Capstone,
+    repo: "https://github.com/Jhziel/Impound-Vehicle-System",
+    live: null,
+    description:
+      "A collaborative capstone project designed to manage impounded vehicles, track violations, and monitor parking lot spaces. I was involved throughout the development process, from planning to deployment.",
+    technologies: [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Bootstrap",
+      "jQuery",
+      "MySQL",
+      "PHP",
+    ],
+  },
+
+  {
+    title: "Weather App",
+    category: "Web Applications",
+    img: WeatherImg,
+    repo: "https://github.com/Jhziel/Weather-App-Using-VueJS",
+    live: "https://main--weatherappvuejs2.netlify.app/",
+    description:
+      "A simple weather application that retrieves real-time weather information using a weather API. Users can search for locations and view details such as temperature, humidity, and wind speed.",
+    technologies: ["Vue.js", "Tailwind CSS", "API"],
+  },
+
+  {
+    title: "Personal Portfolio",
+    category: "Web Applications",
+    img: Portfolio,
+    repo: "https://github.com/Jhziel/Portfolio",
+    live: "https://donjaziel-portfolio.vercel.app/",
+    description:
+      "A personal portfolio website built to showcase my projects, technical skills, and experience. The site uses Vue.js and Tailwind CSS with a responsive and modern design.",
+    technologies: ["Vue.js", "Tailwind CSS"],
+  },
+
+  // Add your WordPress projects here later.
+  //
+  // Example:
+  //
+  // {
+  //   title: "Client WordPress Website",
+  //   category: "WordPress",
+  //   img: WordPressImg,
+  //   repo: null,
+  //   live: "https://example.com",
+  //   description:
+  //     "A responsive WordPress website developed and customized for a client.",
+  //   technologies: [
+  //     "WordPress",
+  //     "Elementor",
+  //     "PHP",
+  //   ],
+  // },
+];
+
+const filteredProjects = computed(() => {
+  if (activeCategory.value === "All") {
+    return projects;
+  }
+
+  return projects.filter(
+    (project) => project.category === activeCategory.value,
+  );
+});
 </script>
 
 <template>
   <section
     id="projects"
-    class="relative min-h-screen bg-[#0d1117] px-6 sm:px-10 lg:px-20 py-24 fade-in-up"
+    class="relative min-h-screen bg-[#0d1117] px-6 py-24 sm:px-10 lg:px-20 fade-in-up"
   >
     <div class="mx-auto w-full max-w-6xl">
-
       <!-- Section Header -->
-      <div class="mb-14 text-center">
-        <p
-          class="mb-3 text-sm uppercase tracking-[0.3em] text-green-500"
-        >
-          My recent work
+      <div class="mb-12 text-center">
+        <p class="mb-3 text-sm uppercase tracking-[0.3em] text-green-500">
+          What I've built
         </p>
 
-        <h1
-          class="text-4xl font-bold text-white sm:text-5xl lg:text-6xl"
-        >
+        <h1 class="text-4xl font-bold text-white sm:text-5xl lg:text-6xl">
           My
           <span class="text-green-500">Projects</span>
         </h1>
 
-        <div
-          class="mx-auto mt-5 h-1 w-16 rounded-full bg-green-500"
-        ></div>
+        <div class="mx-auto mt-5 h-1 w-16 rounded-full bg-green-500"></div>
 
         <p
           class="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-gray-400 sm:text-lg"
         >
-          Here are some of the projects I've built while learning and
-          developing my skills in modern web development.
+          A collection of web applications, websites, and other projects I've
+          worked on while building my development experience.
         </p>
       </div>
 
-      <!-- Projects Grid -->
-      <div
+      <!-- Category Filter -->
+      <div class="mb-10 flex flex-wrap justify-center gap-3">
+        <button
+          v-for="category in categories"
+          :key="category"
+          type="button"
+          @click="activeCategory = category"
+          class="rounded-full border px-5 py-2 text-sm font-medium transition-all duration-300"
+          :class="
+            activeCategory === category
+              ? 'border-green-500 bg-green-500 text-[#0d1117]'
+              : 'border-gray-700 bg-[#111820] text-gray-400 hover:border-green-500/50 hover:text-green-400'
+          "
+        >
+          {{ category }}
+        </button>
+      </div>
+
+      <!-- Projects -->
+      <TransitionGroup
+        name="project"
+        tag="div"
         class="grid grid-cols-1 gap-8 md:grid-cols-2"
       >
-        <!-- Capstone -->
         <ProjectItems
-          title="Impound Vehicle Management System"
-          :img="Capstone"
-          hrefRepo="https://github.com/Jhziel/Impound-Vehicle-System"
+          v-for="project in filteredProjects"
+          :key="project.title"
+          :title="project.title"
+          :category="project.category"
+          :img="project.img"
+          :href-repo="project.repo"
+          :href-live="project.live"
         >
           <template #description>
-            This capstone project, the Impound Vehicle Management System, was a
-            collaborative effort where I was involved in every stage, from
-            planning to deployment. The system is designed to efficiently
-            manage impounded vehicles, track violations, and oversee parking
-            lot space.
+            {{ project.description }}
           </template>
 
           <template #technologies>
-            <TechonologyItems name="HTML" />
-            <TechonologyItems name="CSS" />
-            <TechonologyItems name="JavaScript" />
-            <TechonologyItems name="Bootstrap" />
-            <TechonologyItems name="jQuery" />
-            <TechonologyItems name="MySQL" />
-            <TechonologyItems name="PHP" />
+            <TechonologyItems
+              v-for="technology in project.technologies"
+              :key="technology"
+              :name="technology"
+            />
           </template>
         </ProjectItems>
+      </TransitionGroup>
 
-        <!-- WeatherApp -->
-        <ProjectItems
-          title="Weather App"
-          :img="WeatherImg"
-          hrefRepo="https://github.com/Jhziel/Weather-App-Using-VueJS"
-          hrefLive="https://main--weatherappvuejs2.netlify.app/"
-        >
-          <template #description>
-            Weather App is a simple application that provides users with
-            real-time weather data for locations around the world. It uses a
-            weather API to retrieve information such as temperature, humidity,
-            and wind speed.
-          </template>
-
-          <template #technologies>
-            <TechonologyItems name="Vue.js" />
-            <TechonologyItems name="Tailwind CSS" />
-            <TechonologyItems name="API" />
-          </template>
-        </ProjectItems>
-
-        <!-- Portfolio -->
-        <ProjectItems
-          title="Personal Portfolio"
-          :img="Portfolio"
-          hrefRepo="https://github.com/Jhziel/Portfolio"
-          hrefLive="https://donjaziel-portfolio.vercel.app/"
-        >
-          <template #description>
-            A personal portfolio website showcasing my projects, skills, and
-            experience. It features a responsive design built with Vue.js and
-            styled using Tailwind CSS.
-          </template>
-
-          <template #technologies>
-            <TechonologyItems name="Vue.js" />
-            <TechonologyItems name="Tailwind CSS" />
-          </template>
-        </ProjectItems>
+      <!-- Empty State -->
+      <div
+        v-if="filteredProjects.length === 0"
+        class="rounded-2xl border border-dashed border-gray-800 bg-[#111820] px-6 py-16 text-center"
+      >
+        <p class="text-gray-500">
+          More {{ activeCategory }} projects coming soon.
+        </p>
       </div>
 
       <!-- Bottom Decoration -->
@@ -116,7 +175,7 @@ import TechonologyItems from "./TechonologyItems.vue";
         <span class="h-px w-16 bg-gray-800"></span>
 
         <span class="text-xs uppercase tracking-widest text-gray-600">
-          More projects coming soon
+          Always building & learning
         </span>
 
         <span class="h-px w-16 bg-gray-800"></span>
@@ -125,3 +184,16 @@ import TechonologyItems from "./TechonologyItems.vue";
   </section>
 </template>
 
+<style scoped>
+.project-enter-active,
+.project-leave-active {
+  transition: all 0.3s ease;
+}
+
+.project-enter-from,
+.project-leave-to {
+  opacity: 0;
+  transform: translateY(15px);
+}
+</style>
+```
