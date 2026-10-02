@@ -20,7 +20,7 @@ import vue from "@/assets/images/tech/vue.svg";
 <template>
   <section
     id="skills"
-    class="relative min-h-screen bg-[#0d1117] px-6 py-24 sm:px-10 lg:px-20 fade-in-up"
+    class="relative min-h-screen bg-[#0d1117] px-6 py-24 sm:px-10 lg:px-20 "
   >
     <div class="mx-auto w-full max-w-6xl">
 

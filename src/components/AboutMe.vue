@@ -6,7 +6,7 @@ import GradPic from "@/assets/images/GradPic.png";
 <template>
   <section
     id="about"
-    class="relative min-h-screen bg-[#0d1117] px-6 sm:px-10 lg:px-20 py-24 flex items-center fade-in-up"
+    class="relative min-h-screen bg-[#0d1117] px-6 sm:px-10 lg:px-20 py-24 flex items-center "
   >
     <div class="w-full max-w-6xl mx-auto">
       <!-- Section Title -->

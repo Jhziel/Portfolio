@@ -42,11 +42,6 @@ onMounted(() => {
 </template>
 
 <style>
-.fade-in-up {
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.5s ease-in, transform 0.5s ease-in;
-}
 .active {
   opacity: 1;
   transform: translateY(0);

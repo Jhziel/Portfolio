@@ -5,6 +5,7 @@ import { computed, ref } from "vue";
 import WeatherImg from "@/assets/images/projects/WeatherApp.png";
 import Portfolio from "@/assets/images/projects/Portfolio.png";
 import Capstone from "@/assets/images/projects/Capstone.png";
+import WccKiosk from "@/assets/images/projects/WccKiosk.png";
 
 import ProjectItems from "@/components/ProjectItems.vue";
 import TechonologyItems from "./TechonologyItems.vue";
@@ -14,6 +15,22 @@ const activeCategory = ref("All");
 const categories = ["All", "Web Applications", "WordPress"];
 
 const projects = [
+  {
+    title: "WCC Kiosk",
+    category: "Web Applications",
+    img: WccKiosk,
+    repo: "https://github.com/Jhziel/WCC-Directory",
+    live: null,
+    description:
+      "WCC Kiosk is a Laravel-based campus navigation system that helps users find rooms, explore multi-floor maps, and access campus information such as announcements, events, reminders, and support tickets. It also includes an admin dashboard for managing rooms and content efficiently.",
+    technologies: [
+      "Laravel 12",
+      "Tailwind CSS",
+      "MySQL",
+      "Alpine.js",
+      "Blade templating",
+    ],
+  },
   {
     title: "Impound Vehicle Management System",
     category: "Web Applications",
@@ -89,7 +106,7 @@ const filteredProjects = computed(() => {
 <template>
   <section
     id="projects"
-    class="relative min-h-screen bg-[#0d1117] px-6 py-24 sm:px-10 lg:px-20 fade-in-up"
+    class="relative min-h-screen bg-[#0d1117] px-6 py-24 sm:px-10 lg:px-20"
   >
     <div class="mx-auto w-full max-w-6xl">
       <!-- Section Header -->

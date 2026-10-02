@@ -4,7 +4,7 @@ import ContactItem from "@/components/ContactItem.vue";
 <template>
   <section
     id="contact"
-    class="relative min-h-screen overflow-hidden bg-[#0d1117] px-6 py-24 sm:px-10 lg:px-20 fade-in-up"
+    class="relative min-h-screen overflow-hidden bg-[#0d1117] px-6 py-24 sm:px-10 lg:px-20 "
   >
     <!-- Background Glow -->
     <div
